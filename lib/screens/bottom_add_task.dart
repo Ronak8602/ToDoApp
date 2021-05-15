@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/utilities/tasks.dart';
 
 class BottomAddTask extends StatelessWidget {
-  const BottomAddTask({Key key}) : super(key: key);
-
+  final Function newTaskManager;
+  BottomAddTask(this.newTaskManager);
   @override
   Widget build(BuildContext context) {
+    String taskName;
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -32,16 +34,20 @@ class BottomAddTask extends StatelessWidget {
                 child: TextField(
                   autofocus: true,
                   textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    taskName = value;
+                  },
                 ),
               ),
               FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  newTaskManager(taskName);
+                },
                 color: Colors.lightBlueAccent,
-                child: Text('Add',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white
-                ),),
+                child: Text(
+                  'Add',
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                ),
               )
             ],
           ),
